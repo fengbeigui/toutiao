@@ -18,7 +18,8 @@ export default {
 <style>
 /* 字体样式，需要连网，可以找找下载下来的方式方法 */
 @import url('http://at.alicdn.com/t/font_1426139_h6vn3jbl5q.css');
-
+/* 导入vant样式 */
+@import url("../node_modules/vant/lib/index.css");
 
 /* 组件样式，会污染全局 */
 /* 公共样式 */
