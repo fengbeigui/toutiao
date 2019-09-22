@@ -18,6 +18,14 @@
     err_message="手机号码格式不正确"
     ></AuthInput>
 
+    <AuthInput
+    placeholder="密码"
+    v-model="form.password"
+
+    :rule="/^[0-9a-zA-Z]{3,12}$/"
+    err_message="密码格式不正确"
+    ></AuthInput>
+
     <button @click="handleSubmit">登录按钮</button>
   </div>
 </template>
