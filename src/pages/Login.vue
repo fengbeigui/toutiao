@@ -10,86 +10,87 @@
     </div>
     <!-- 用户名密码输入框 -->
     <div class="inputs">
-          <AuthInput 
-    placeholder="手机号码" 
-    :value="form.username" 
-    @input="handleUsername"
+      <AuthInput
+        placeholder="手机号码"
+        :value="form.username"
+        @input="handleUsername"
+        :rule="/^1[0-9]{4,10}$/"
+        err_message="手机号码格式不正确"
+      ></AuthInput>
 
-    :rule="/^1[0-9]{4,10}$/"
-    err_message="手机号码格式不正确"
-    ></AuthInput>
-
-    <AuthInput
-    placeholder="密码"
-    v-model="form.password"
-
-    :rule="/^[0-9a-zA-Z]{3,12}$/"
-    err_message="密码格式不正确"
-    ></AuthInput>
+      <AuthInput
+        placeholder="密码"
+        v-model="form.password"
+        :rule="/^[0-9a-zA-Z]{3,12}$/"
+        err_message="密码格式不正确"
+      ></AuthInput>
     </div>
 
-   <!--  <button @click="handleSubmit">登录按钮</button> -->
-   <AuthButton text="登录" @click="handleSubmit"/>
+    <!--  <button @click="handleSubmit">登录按钮</button> -->
+    <AuthButton text="登录" @click="handleSubmit" />
   </div>
 </template>
 
 <script>
 //导入请求库
-import axios from "axios";
+//import axios from "axios";  //把axios绑定到原型了
 
 //导入输入框组件
-import AuthInput from "@/components/AuthInput.vue";  //可省略后缀
-import  AuthButton from "@/components/AuthButton";
+import AuthInput from "@/components/AuthInput.vue"; //可省略后缀
+import AuthButton from "@/components/AuthButton";
 
 export default {
   data() {
     return {
       //发送给后台的数据 form?
-      form:{
-        username:"",
-        password:""
+      form: {
+        username: "",
+        password: ""
       }
-    }
+    };
   },
   // 注册组件
-  components:{
+  components: {
     AuthInput,
     AuthButton
   },
 
-  methods:{
+  methods: {
     //传递给输入框组件，用于获取用户名
-    handleUsername(value){
+    handleUsername(value) {
       this.form.username = value;
-
     },
     //表单提交
-    handleSubmit(){
+    handleSubmit() {
       //console.log(this.form)
       //请求事件
-      axios({
-        url:"http://localhost:3000/login",
-        method:"POST", //method相当于type
-        data:this.form
+      //axios({
+      this.$axios({
+        url: "/login",
+        method: "POST", //method相当于type
+        data: this.form
         //.then的回调函数相当于success
+      }).then(res => {
+        //console.log(res);
+        const {message} = res.data;
 
-      }).then(res=>{
-        console.log(res)
-      })
+        if(message === "登录成功"){
+          //跳转到首页
+          this.$router.push("/")
+        }
+      });
     }
   }
-}
-
-
+};
 </script>
 
 <style  scoped lang="less">
- // scoped 作用域样式
+// scoped 作用域样式
 //lang声明样式的类型
 .container {
   padding: 20px;
 
-  .close{
+  .close {
     span {
       font-size: 27 / 360 * 100vw;
     }
@@ -104,11 +105,10 @@ export default {
     font-size: 126 /360 * 100vw;
     color: #d81e06;
   }
-
 }
 
 .inputs {
-  input{
+  input {
     margin-bottom: 20px;
   }
 }
