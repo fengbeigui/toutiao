@@ -9,7 +9,8 @@
       <span class="iconfont iconnew"></span>
     </div>
     <!-- 用户名密码输入框 -->
-    <AuthInput 
+    <div class="inputs">
+          <AuthInput 
     placeholder="手机号码" 
     :value="form.username" 
     @input="handleUsername"
@@ -25,14 +26,17 @@
     :rule="/^[0-9a-zA-Z]{3,12}$/"
     err_message="密码格式不正确"
     ></AuthInput>
+    </div>
 
-    <button @click="handleSubmit">登录按钮</button>
+   <!--  <button @click="handleSubmit">登录按钮</button> -->
+   <AuthButton text="登录" @click="handleSubmit"/>
   </div>
 </template>
 
 <script>
 //导入输入框组件
-import AuthInput from "@/components/AuthInput";  //可省略后缀
+import AuthInput from "@/components/AuthInput.vue";  //可省略后缀
+import  AuthButton from "@/components/AuthButton";
 export default {
   data() {
     return {
@@ -45,7 +49,8 @@ export default {
   },
   // 注册组件
   components:{
-    AuthInput
+    AuthInput,
+    AuthButton
   },
 
   methods:{
@@ -86,5 +91,11 @@ export default {
     color: #d81e06;
   }
 
+}
+
+.inputs {
+  input{
+    margin-bottom: 20px;
+  }
 }
 </style>
