@@ -1,8 +1,12 @@
 import Vue from "vue"
 
-// + 导入App.vue组件
+//  导入App.vue组件
 import App from "./App.vue"
+// 导入登录组件
 import Login from "@/pages/Login"
+//导入注册组件
+import Register from "@/pages/Register";
+
 //导入vant-ui组件
 import Vant from 'vant';
 //导入axios
@@ -23,7 +27,8 @@ axios.defaults.baseURL = "http://localhost:3000";
 
 //路由 2.创建路由配置
 const routes = [
-    { path: '/login', component: Login }
+    { path: '/login', component: Login },
+    { path: "/register",component: Register}
 ]
 
 //路由：3.创建对象
