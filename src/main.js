@@ -8,7 +8,7 @@ import Login from "@/pages/Login"
 import VueRouter from 'vue-router'
 
 
-//注册下路由
+//注册下路由, 在.vue文件中要使用router-link或者router-view.需要注册下插件
 Vue.use(VueRouter)
 
 //路由 2.创建路由配置
@@ -30,7 +30,9 @@ new Vue({
     //路由：4.挂载到跟实例
     router,
 
+    // 指定一个组件渲染根实例，这个组件可以成为最底层的组件
     render: function (createElement) {
+        // render函数使用固定的写法，只有App是可变；
         return createElement(App)
     },
 

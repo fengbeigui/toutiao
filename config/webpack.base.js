@@ -68,6 +68,7 @@ module.exports = {
                     use: ["css-loader", "less-loader"]
                 })
             },
+            // 匹配图片文件
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
@@ -80,7 +81,7 @@ module.exports = {
                     }
                 ]
             },
-            //其他加载器
+            //其他加载器, 匹配vue的单文件组件
             {
                 test: /\.vue$/,
                 use: ['vue-loader']
@@ -90,13 +91,14 @@ module.exports = {
 
     plugins: [
         // 提取css样式到单独文件
-        new ExtractTextPlugin("style/style2.css"),
+        new ExtractTextPlugin("style/style.css"),
 
         // 每次构建前清除dist目录
         new CleanWebpackPlugin(),
 
         // 自动生成index.html到dist
         new HtmlWebpackPlugin({
+            // template指定默认html模板
             template: "public/index.html"
         }),
 

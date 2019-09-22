@@ -2,11 +2,7 @@
 <template>
 	<!-- template最外层只能包含一个标签 -->
   	<div>
-          <h1>第一个单文件组件</h1>
-         <div class="box1">
-            顶顶顶
-        </div> 
-        <router-link to='/login'>登陆页面</router-link>
+
         <router-view></router-view>
       </div>
       
@@ -20,18 +16,27 @@ export default {
 </script>
 
 <style>
-/* 组件样式，会污染全局 */
-html{
-    font-size: 10vw;
-}
-    
-body{
-    font-size:16px;
-}
+/* 字体样式，需要连网，可以找找下载下来的方式方法 */
+@import url('http://at.alicdn.com/t/font_1426139_h6vn3jbl5q.css');
 
-.box1{
-    width: 2rem;
-    height:2rem;
-    background: skyblue;
+
+/* 组件样式，会污染全局 */
+/* 公共样式 */
+*{
+    margin:0;
+    padding:0;
+}
+a{
+    color:inherit;
+
+}
+a:hover{
+    text-decoration: none;
+}
+ul,li,ol{
+    list-style:none;
+}
+i,em{
+    font-style:normal;
 }
 </style>
