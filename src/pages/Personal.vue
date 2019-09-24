@@ -53,12 +53,14 @@ export default {
           //保存到data
           this.profile = data;
 
-          //如果用户有头像
-          if(data.head_img){
-              this.profile.head_img = this.$axios.defaults.baseURL + profile.head_img;
-          }else{
-              this.profile.head_img = "./static/timg.jpg"
-          }
+            if(data){
+                 //如果用户有头像
+                if(data.head_img){
+                    this.profile.head_img = this.$axios.defaults.baseURL + profile.head_img;
+                }else{
+                    this.profile.head_img = "./static/timg.jpg"
+                }
+            }
       })
   }
 
