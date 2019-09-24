@@ -14,17 +14,46 @@
 
     </div>
     <!-- 调用条形组件 -->
-      <CellBar />
+     <!--  <CellBar /> -->
+     <CellBar label="我的关注" text="关注的用户"/>
+     <CellBar label="我的跟帖" text="跟帖/回复"/>
+     <CellBar label="我的收藏" text="文章/视频"/>
+     <CellBar label="设置" />
   </div>
 </template>
 
 <script>
 //导入条形组件
 import CellBar from "@/components/CellBar";
+
 export default {
-  components: {
-    CellBar
+    data(){
+        return{
+            //个人信息
+            profile:{}
+        }
+    },
+    components: {
+        CellBar
+    },
+
+  mounted(){
+      //请求个人资料接口
+      this.$axios({
+          url:"/user/"+localStorage.getItem("user_id"),
+          //添加头信息
+          headers:{
+              Authorization:localStorage.getItem("token")
+          }
+      }),then(res=>{
+          //console.log(res)
+          //localStorage.serItem没有定义的解决办法
+          const {data} = res.data;
+          //保存到data
+          this.profile = data;
+      })
   }
+
 };
 </script>
 
