@@ -1,11 +1,12 @@
 <template>
   <div>
     <div class="profile">
-      <img src="http://img1.imgtn.bdimg.com/it/u=2357912857,682090914&fm=26&gp=0.jpg" alt />
+         <!-- $axios.defaults.baseURL读取axios的服务器路径 -->
+      <img v-bind:src="profile.head_img" alt />
       <div class="profile-center">
         <div class="name">
           <span class="iconfont iconxingbienan"></span>
-          火星网友
+          {{profile.nickname}}
         </div>
         <div class="time">2019-9-24</div>
       </div>
@@ -18,7 +19,7 @@
      <CellBar label="我的关注" text="关注的用户"/>
      <CellBar label="我的跟帖" text="跟帖/回复"/>
      <CellBar label="我的收藏" text="文章/视频"/>
-     <CellBar label="设置" />
+     <CellBar label="退出" />
   </div>
 </template>
 
@@ -45,12 +46,19 @@ export default {
           headers:{
               Authorization:localStorage.getItem("token")
           }
-      }),then(res=>{
+      }).then(res=>{
           //console.log(res)
           //localStorage.serItem没有定义的解决办法
           const {data} = res.data;
           //保存到data
           this.profile = data;
+
+          //如果用户有头像
+          if(data.head_img){
+              this.profile.head_img = this.$axios.defaults.baseURL + profile.head_img;
+          }else{
+              this.profile.head_img = "./static/timg.jpg"
+          }
       })
   }
 

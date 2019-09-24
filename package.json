@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "copy-webpack-plugin": "^5.0.4",
     "vant": "^2.2.2",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3"
