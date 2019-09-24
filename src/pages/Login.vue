@@ -81,7 +81,7 @@ export default {
 
         if(message === "登录成功"){
           //跳转到首页
-          this.$router.push("/")
+          this.$router.push("/personal")
         }
       });
     }

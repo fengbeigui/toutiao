@@ -6,9 +6,11 @@ import App from "./App.vue"
 import Login from "@/pages/Login"
 //导入注册组件
 import Register from "@/pages/Register";
+//导入注册组件
+import Personal from "@/pages/personal";
 
 //导入vant-ui组件
-import Vant from 'vant';
+import Vant, { Toast } from 'vant';
 //导入axios
 import axios from "axios";
 
@@ -28,7 +30,8 @@ axios.defaults.baseURL = "http://localhost:3000";
 //路由 2.创建路由配置
 const routes = [
     { path: '/login', component: Login },
-    { path: "/register",component: Register}
+    { path: "/register",component: Register},
+    { path: "/personal",component: Personal}
 ]
 
 //路由：3.创建对象
@@ -36,6 +39,17 @@ const router = new VueRouter({
     routes
 });
 
+//axios的统一的拦截器，拦截响应
+//固定的声明
+axios.interceptors.response.use(res=>{
+    //console.log(res)
+    const{message,statusCode}=res.data;
+
+    if(statusCode === 401){
+        Toast.fail(message);
+    }
+    return res;
+})
 new Vue({
     el: "#app",
     // data:{
