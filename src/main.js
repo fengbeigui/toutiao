@@ -10,6 +10,7 @@ import Register from "@/pages/Register";
 import Personal from "@/pages/personal";
 import EditProfile from "@/pages/EditProfile";
 import UserFollow from "@/pages/UserFollow";
+import UserComment from "@/pages/UserComment";
 
 
 //导入vant-ui组件
@@ -38,6 +39,7 @@ const routes = [
     { path: "/personal",component: Personal},
     { path: "/edit_profile", component: EditProfile },
     { path: "/user_follow", component: UserFollow },
+    { path: "/user_comment", component: UserComment }
 ]
 
 //路由：3.创建对象
