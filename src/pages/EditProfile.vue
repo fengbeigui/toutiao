@@ -9,21 +9,17 @@
       <img :src="profile.head_img" alt />
 
       <!-- vant上传组件 -->
-      <van-uploader :after-read="afterRead" class="uploader"/>
+      <van-uploader :after-read="afterRead" class="uploader" />
     </div>
 
     <!-- 调用条形组件 -->
-    <CellBar label="昵称" :text="profile.nickname" @click="show1 = !show1"/>
+    <CellBar label="昵称" :text="profile.nickname" @click="show1 = !show1" />
 
     <!--昵称编辑输入框 -->
     <!-- 鼠标放到属性上就可以查看 -->
-    <van-dialog 
-        v-model="show1"
-        title="编辑昵称"
-        show-cancel-button=""
-        >
-        <!-- value读取昵称 -->
-        <van-field :value="profile.nickname" placeholder="请输入用户名"/>
+    <van-dialog v-model="show1" title="编辑昵称" show-cancel-button @confirm="handNicknames">
+      <!-- value读取昵称 -->
+      <van-field :value="profile.nickname" placeholder="请输入用户名" ref="nickname" />
     </van-dialog>
 
     <CellBar label="密码" v-bind:text="profile.password" type="password" />
@@ -42,57 +38,86 @@ export default {
       //用户详情
       profile: {},
       //昵称弹窗
-      show1:false,
+      show1: false
     };
   },
   components: {
     HeaderNormal,
     CellBar
   },
-    methods:{
-        //选择完图片之后的回调函数，file返回旋转的图片
-        afterRead(file){
-            //console.log(file)
-            //构造表单数据
-            const formData = new FormData();
-            //通过表单使用append方法追加数据
-            formData.append('file',file.file);
+  //methods存放事件
+  methods: {
+    //选择完图片之后的回调函数，file返回旋转的图片
+    afterRead(file) {
+      //console.log(file)
+      //构造表单数据
+      const formData = new FormData();
+      //通过表单使用append方法追加数据
+      formData.append("file", file.file);
 
-            this.$axios({
-                url:"/upload",  //文档接口
-                method:'POST',
-                //添加头信息
-                headers:{
-                    Authorization: localStorage.getItem("token")
-                },
-                //把表单数据上传到服务器
-                data:formData
-            }).then(res=>{
-                const {data} = res.data;
+      this.$axios({
+        url: "/upload", //文档接口
+        method: "POST",
+        //添加头信息
+        headers: {
+          Authorization: localStorage.getItem("token")
+        },
+        //把表单数据上传到服务器
+        data: formData
+      }).then(res => {
+        const { data } = res.data;
 
-                //替换用户资料的头像
-                this.profile.head_img = this.$axios.defaults.baseURL + data.url;
+        //替换用户资料的头像
+        this.profile.head_img = this.$axios.defaults.baseURL + data.url;
 
-                //把头像url上传到用户资料
-                this.$axios({
-                    url:`/user_update/`+ localStorage.getItem("user_id"),
-                    method:'POST',
-                    //添加头信息
-                    headers:{
-                         Authorization: localStorage.getItem("token")
-                    },
-                    data:{
-                        head_img:data.url
-                    }
-                }).then(res=>{
-                    const {message} = res.data;
-                    if(message === '修改成功'){
-                        this.$toast.success(message);
-                    }
-                })
-            })
-        }
+        //把头像url上传到用户资料
+        this.$axios({
+          url: `/user_update/` + localStorage.getItem("user_id"),
+          method: "POST",
+          //添加头信息
+          headers: {
+            Authorization: localStorage.getItem("token")
+          },
+          data: {
+            head_img: data.url
+          }
+        }).then(res => {
+          const { message } = res.data;
+          if (message === "修改成功") {
+            this.$toast.success(message);
+          }
+        });
+      });
     },
+
+    //昵称编辑
+    handNicknames() {
+      //拿到input输入框的值
+      const value = this.$refs.nickname.$refs.input.value;
+      //提交编辑资料的接口
+      this.$axios({
+        url: "/user_update/" + localStorage.getItem("user_id"),
+        method: "POST",
+        //添加头信息
+        headers: {
+          Authorization: localStorage.getItem("token")
+        },
+        data: {
+          nickname: value
+        }
+      }).then(res => {
+        const { message } = res.data;
+
+        //成功的弹窗显示
+        if (message === "修改成功") {
+          //替换profile的昵称
+          this.profile.nickname = value;
+
+          this.$toast.success(message);
+        }
+      });
+    }
+  },
 
   // 在这发起后端请求，拿回数据，配合路由钩子做一些事情
   mounted() {
@@ -103,20 +128,20 @@ export default {
       headers: {
         Authorization: localStorage.getItem("token")
       }
-    }).then(res =>{
-        const{data} = res.data;
+    }).then(res => {
+      const { data } = res.data;
 
-        if(data){
-            this.profile = data;
+      if (data) {
+        this.profile = data;
 
-            //如果用户有头像
-            if(data.head_img){
-                this.profile.head_img = this.$axios.defaults.baseURL + data.head_img;
-            }else{
-                this.profile.head_img = "./static/timg.jpg"
-            }
+        //如果用户有头像
+        if (data.head_img) {
+          this.profile.head_img = this.$axios.defaults.baseURL + data.head_img;
+        } else {
+          this.profile.head_img = "./static/timg.jpg";
         }
-    })
+      }
+    });
   }
 };
 </script>
@@ -135,14 +160,14 @@ export default {
     height: 100/360 * 100vw;
     border-radius: 50%;
   }
-  .uploader{
-      position:absolute;
-      opacity:0;
+  .uploader {
+    position: absolute;
+    opacity: 0;
   }
   // 如果要修改第三方组件库的样式时候，需要在前面加上/deep/， 因为组件库的样式不受scoped的影响
-  /deep/ .van-uploader__upload{
-      width: 100 / 360 * 100vw;
-      height: 100 / 360 * 100vw;
+  /deep/ .van-uploader__upload {
+    width: 100 / 360 * 100vw;
+    height: 100 / 360 * 100vw;
   }
 }
 </style>
