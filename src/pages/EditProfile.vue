@@ -150,7 +150,15 @@ export default {
 
     //编辑性别
     handlGender(){
-        console.log()
+        //console.log()
+        //把性别转换为数字
+        const gender = +this.genderCache;
+
+        //编辑性别
+        this.editProfile({gender},()=>{
+            //修改成功之后替换页面显示的性别
+            this.profile.gender = gender;
+        });
     }
   },
 
