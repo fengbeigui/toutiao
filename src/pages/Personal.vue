@@ -1,19 +1,23 @@
 <template>
   <div>
-    <div class="profile">
-         <!-- $axios.defaults.baseURL读取axios的服务器路径 -->
-      <img v-bind:src="profile.head_img" alt />
-      <div class="profile-center">
-        <div class="name">
-          <span class="iconfont iconxingbienan"></span>
-          {{profile.nickname}}
+    <!-- 新增链接 -->
+    <router-link to="/edit_profile">
+        <div class="profile">
+            <!-- $axios.defaults.baseURL读取axios的服务器路径 -->
+          <img v-bind:src="profile.head_img" alt />
+          
+          <div class="profile-center">
+            <div class="name">
+              <span class="iconfont iconxingbienan"></span>
+              {{profile.nickname}}
+            </div>
+            <div class="time">2019-9-24</div>
+          </div>
+          <span class="iconfont iconjiantou1"></span>
+
+
         </div>
-        <div class="time">2019-9-24</div>
-      </div>
-      <span class="iconfont iconjiantou1"></span>
-
-
-    </div>
+     </router-link>
     <!-- 调用条形组件 -->
      <!--  <CellBar /> -->
      <CellBar label="我的关注" text="关注的用户"/>

@@ -8,6 +8,8 @@ import Login from "@/pages/Login"
 import Register from "@/pages/Register";
 //导入注册组件
 import Personal from "@/pages/personal";
+import EditProfile from "@/pages/EditProfile";
+
 
 //导入vant-ui组件
 import Vant, { Toast } from 'vant';
@@ -32,7 +34,8 @@ axios.defaults.baseURL = "http://localhost:3000";
 const routes = [
     { path: '/login', component: Login },
     { path: "/register",component: Register},
-    { path: "/personal",component: Personal}
+    { path: "/personal",component: Personal},
+    { path: "/edit_profile", component: EditProfile }
 ]
 
 //路由：3.创建对象
@@ -49,7 +52,7 @@ router.beforeEach((to,from,next)=>{
     const hasToken = localStorage.getItem("token");
 
     //判断是否是需要登录权限的页面
-    if(to.path === "/personal"){
+    if(to.path === "/personal" || to.path === "/edit_profile"){
         //判断本地是否有token
         if(hasToken){
             //正常跳转
