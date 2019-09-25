@@ -2,7 +2,9 @@
   <div class="cell-wrap " @click="$emit('click',$event)">
       <div class="cell">
           <span>{{label}}</span>
-          <i>{{text}}</i>
+
+         <!--  如果type等于password,显示星号 -->
+          <i>{{type === 'password'? '******' :text}}</i>
           <span class="iconfont iconjiantou1"></span>
       </div>
 
@@ -12,8 +14,8 @@
 <script>
 
 export default {
-    //label左侧的文字，text是右侧的文字
-    props:['label',"text"],
+    //label左侧的文字，text是右侧的文字,再传入一个type值
+    props:['label',"text","type"],
 }
 </script>
 
