@@ -3,18 +3,16 @@
     <!-- 左侧文字 -->
     <div class="card-left">
       <div class="post-title">
-        hao123是汇集全网优质网址及资源的中文上网导航,
-        hao123是汇集全网优质网址及资源的中文上网导航
-        hao123是汇集全网优质网址及资源的中文上网导航
+          {{post.title}}
       </div>
       <p class="post-info">
-        <span>火星时报</span>
-        <span>100跟帖</span>
+        <span>{{post.user.nickname}}</span>
+        <span>{{post.comment_length}}跟帖</span>
       </p>
     </div>
     <div class="card-img">
       <img
-        src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1569488814&di=1d8852714981dc51fe39e6ab10fb818f&src=http://b-ssl.duitang.com/uploads/item/201706/11/20170611211241_siFHV.thumb.700_0.jpeg"
+        :src="post.cover[0].url"
         alt
       />
     </div>
@@ -22,7 +20,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+    props:['post']
+};
 </script>
 
 <style scoped lang="less">
@@ -34,6 +34,7 @@ export default {};
   border-bottom: 1px solid #ccc;
 
   .card-left {
+      
     flex: 1;
 
     .post-title {
