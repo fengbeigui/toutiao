@@ -129,8 +129,23 @@ export default {
     //请求栏目的数据
     this.$axios(config).then(res => {
       const { data } = res.data;
+
+        //定义一个空数组
+        const newData = [];
+        //循环给栏目中没一项都添加四个独立的属性
+        data.forEach(v=>{
+            v.posts = []
+            v.loading = false;
+            v.finished = false;
+            v.pageIndex = 1;
+            newData.push(v)
+        })
+
+
       //保存了栏目列表
-      this.categories = data;
+      this.categories = newData;
+
+      //console.log(this.categories)
     });
 
     //请求文章列表
