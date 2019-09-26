@@ -73,5 +73,15 @@ export default {
             }
         }
     }
+      
+      //tab栏的样式
+      //受上面的scoped影响  需要/deep/
+  /deep/     .van-tabs__nav{
+       background:#f6f6f6;
+  }
+  /deep/  .van-tabs__line{
+      width: 40px;
+      height: 1px;
+    }
 
 </style>
