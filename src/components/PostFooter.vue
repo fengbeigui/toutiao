@@ -6,7 +6,7 @@
 
       <span class="comment">
         <em>1020</em>
-        <i class="iconfont iconpinglun"></i>
+        <i class="iconfont iconpinglun-"></i>
       </span>
 
       <i class="iconfont iconshoucang"></i>
@@ -47,6 +47,7 @@ export default {
          border-top:1px #eee solid;
          padding: 0 10px;
          box-sizing: border-box;
+         
 
 .footer {
         height: 60 / 360 * 100vw;
@@ -54,6 +55,7 @@ export default {
          justify-content: space-between;
          align-items: center;
          box-sizing: border-box;
+         background-color: #fff;
     input{
         width: 40%;
         height: 36 / 360 * 100vw;
@@ -68,9 +70,13 @@ export default {
       position: relative;
       em{
           position:absolute;
+          left: 0;
+          top: -5px;
           display: block;
           background: red;
           border-radius: 50px;
+          padding: 0 8px;
+          
       }
   }
 }
@@ -79,6 +85,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  background-color: #fff;
   textarea {
       width: 260/360*100vw;
     background:#eee;
@@ -100,14 +107,13 @@ export default {
         color:#fff;
         padding: 0 5px;
         font-size:10px;
-        height: 14px;
-        line-height: 14px;
+        line-height: 26 / 360 * 100vw;
         left:0;
         top:-5px;
   }
 }
     .iconfont{
-        font-size:24;
+        font-size:24px;
     }
 }
 </style>
