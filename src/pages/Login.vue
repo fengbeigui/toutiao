@@ -85,7 +85,7 @@ export default {
           localStorage.setItem("user_id",data.user.id)
 
           //跳转到首页
-          this.$router.push("/personal")
+          this.$router.push("/")
         }
       });
     }

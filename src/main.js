@@ -11,6 +11,7 @@ import Personal from "@/pages/personal";
 import EditProfile from "@/pages/EditProfile";
 import UserFollow from "@/pages/UserFollow";
 import UserComment from "@/pages/UserComment";
+import PostDetail from "@/pages/PostDetail";
 import Index from "@/pages/Index";
 
 //导入vant-ui组件
@@ -40,6 +41,7 @@ const routes = [
     { path: "/edit_profile", component: EditProfile },
     { path: "/user_follow", component: UserFollow },
     { path: "/user_comment", component: UserComment },
+    { path: "/post_detail/:id", component: PostDetail },
 
     { path: "/", component: Index },
 ]
