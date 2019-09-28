@@ -1,15 +1,97 @@
 <template>
   <div>
-      文章详情页
+    <!-- 文章详情页 -->
+    <div class="article">
+      <div class="header">
+        <div class="header-left" @click="$router.back()">
+          <span class="iconfont iconjiantou2"></span>
+          <span class="iconfont iconnew"></span>
+        </div>
+        <span class="focus">关注</span>
+      </div>
+      <h3>文章的详情页的内容</h3>
+
+      <p class="post-info">火星时报 2019-10-10</p>
+
+      <div class="post-content">
+        文章的详情页的内容文章的详情页的内容,
+        文章的详情页的内容，文章的详情页的内容文章的详情页的内容
+        文章的详情页的内容
+      </div>
+    </div>
+    <div class="post-btns">
+      <span>
+        <i class="iconfont icondianzan"></i>
+        112
+      </span>
+      <span>
+        <i class="iconfont iconweixin"></i>
+        微信
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
+export default {};
+</script >
 
+
+<style scoped lang="less">
+.article {
+  padding: 0 10px;
+  .header {
+    height: 60/360 * 100vw;
+    display: flex; //flex 布局
+    justify-content: space-between; //向两边对齐
+    align-items: center; //定义flex子项，（纵轴）方向上的对齐方式
+    .header-left {
+      * {
+        vertical-align: middle; //vertical-align 属性设置元素的垂直对齐方式。 说明 该属性定义行内元素的基线相对...middle 把此元素放置在父元素的中部
+      }
+    }
+    .iconnew{
+        font-size:50px;
+    }
+    .focus {
+      width: 62/360 * 100vw;
+      height: 26/360 * 100vw;
+      line-height:26/360 * 100vw;
+      text-align: center;
+      font-size: 12px;
+      background: red;
+      color:#fff;
+      border-radius: 50px;
+    }
+  }
+  .h3 {
+    margin-bottom: 5px;
+  }
+  .post-info {
+      font-size:12px;
+      color:#999;
+      margin-bottom:10px;
+  }
+  .post-content {
+      line-height: 1.5;
+  }
 }
-</script>
+  .post-btns {
+      margin-top:30px;
+      display: flex;
+      //平均分配空间
+      justify-content: space-around;
 
-<style>
-
+      span{
+          padding: 0 15px;
+          height:30/360*100vw;
+          line-height: 30/360*100vw;
+          font-size: 12px;
+          border:1px #ddd solid;
+          border-radius: 50px;
+      }
+      .iconweixin{
+          color:#07c907;
+      }
+  }
 </style>
