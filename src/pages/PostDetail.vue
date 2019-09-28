@@ -29,11 +29,21 @@
         微信
       </span>
     </div>
+
+    <!-- 页脚组件 -->
+    <PostFooter/>
   </div>
 </template>
 
 <script>
-export default {};
+//导入页脚组件
+import PostFooter from "@/components/PostFooter"
+export default {
+    //存储导入的数据PostFooter 
+    components:{
+        PostFooter
+    }
+};
 </script >
 
 
