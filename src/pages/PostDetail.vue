@@ -43,8 +43,10 @@
         {{detail.like_length}}
       </span>
       <span>
+        <!-- <router-link是我们自己定义的路由跳转，由于没有分享链接，这里使用a -->
+         <a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#1">微信</a>
         <i class="iconfont iconweixin"></i>
-        微信
+        
       </span>
     </div>
 
