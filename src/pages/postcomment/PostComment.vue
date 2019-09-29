@@ -6,15 +6,12 @@
 </template>
 
 <script>
-import HeaderNormal from "@/components/HeaderNormal"
-export default {
-        //导入一定要注册组件
-        components:{
-            HeaderNormal
-        }
-}
+//导入脚本
+import config from "./PostComment.js"
+export default config;
+
 </script>
 
-<style>
-
+<style scoped lang="less">
+@import url("./PostComment.less");
 </style>
