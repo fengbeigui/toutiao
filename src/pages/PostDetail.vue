@@ -21,6 +21,7 @@
       <span @click="handleLike" :class="{like_active: detail.has_like}">
         <i class="iconfont icondianzan"></i>
         {{detail.like_length}}
+        
       </span>
       <span>
         <i class="iconfont iconweixin"></i>
@@ -103,7 +104,8 @@ export default {
           this.detail.has_like = true;
           this.detail.like_length++;
         }
-        if(message==="点赞失败"){
+        if(message==="取消成功"){
+          //修改取消点赞的按钮的状态
            this.detail.has_like = false;
             this.detail.like_length--;
         }
@@ -124,8 +126,13 @@ export default {
         if(message==="收藏成功"){
           //修改关注的按钮的状态
           this.detail.has_star =  true;
-          this.$toast.success(message)
+          
         }
+        if(message=="取消成功"){
+          //修改关注的按钮的状态
+          this.detail.has_star = false;
+        }
+        this.$toast.success(message)
       })
     }
   },
@@ -156,10 +163,18 @@ export default {
 .article {
   padding: 0 10px;
   .header {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
     height: 60/360 * 100vw;
+    padding: 0 10px;
+    //为元素设定的宽度和高度决定了元素的边框盒。
+    box-sizing: border-box;
     display: flex; //flex 布局
     justify-content: space-between; //向两边对齐
     align-items: center; //定义flex子项，（纵轴）方向上的对齐方式
+    background:#fff;
     .header-left {
       * {
         vertical-align: middle; //vertical-align 属性设置元素的垂直对齐方式。 说明 该属性定义行内元素的基线相对...middle 把此元素放置在父元素的中部
@@ -201,7 +216,7 @@ export default {
   }
 }
 .post-btns {
-  margin-top: 30px;
+  margin: 30px 0;
   display: flex;
   //平均分配空间
   justify-content: space-around;

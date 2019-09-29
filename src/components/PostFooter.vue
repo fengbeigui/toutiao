@@ -54,74 +54,77 @@ export default {
   border-top: 1px #eee solid;
   padding: 0 10px;
   box-sizing: border-box;
+}
 
-  .footer {
-    height: 60 / 360 * 100vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.footer-comment {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  textarea {
+    width: 260 / 360 * 100vw;
+    background: #eee;
+    padding: 10px;
     box-sizing: border-box;
-    background-color: #fff;
-    input {
-      width: 40%;
-      height: 36 / 360 * 100vw;
-      background: #eee;
-      border: none;
-      font-size: 12px;
-      padding: 0 15px;
-      border-radius: 50px;
-    }
-    .comment {
-      display: block;
-      position: relative;
-      em {
-        position: absolute;
-        left: 0;
-        top: -5px;
-        display: block;
-        background: red;
-        border-radius: 50px;
-        padding: 0 8px;
-      }
-    }
+    border: none;
+    border-radius: 8px;
+    resize: none;
   }
-  .footer-comment {
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    background-color: #fff;
-    textarea {
-      width: 260/360 * 100vw;
-      background: #eee;
-      padding: 10px;
-      box-sizing: border-box;
-      border: none;
-      border-radius: 8px;
-      resize: none;
-    }
-    span {
-      font-size: 12px;
+
+  span {
+    font-size: 12px;
+    background: red;
+    width: 60 / 360 * 100vw;
+    height: 26 / 360 * 100vw;
+    line-height: 26 / 360 * 100vw;
+    color: #fff;
+    text-align: center;
+    border-radius: 50px;
+  }
+}
+
+.footer {
+  height: 60 / 360 * 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+
+  input {
+    width: 40%;
+    height: 36 / 360 * 100vw;
+    background: #eee;
+    border: none;
+    font-size: 12px;
+    padding: 0 15px;
+    border-radius: 50px;
+  }
+
+  .comment {
+    display: block;
+    position: relative;
+
+    em {
+      position: absolute;
+      display: block;
       background: red;
-      width: 60 / 360 * 100vw;
-      height: 26 / 360 * 100vw;
-      line-height: 26 / 360 * 100vw;
-      color: #fff;
-      text-align: center;
       border-radius: 50px;
       color: #fff;
       padding: 0 5px;
       font-size: 10px;
-      line-height: 26 / 360 * 100vw;
+      height: 14px;
+      line-height: 14px;
       left: 0;
       top: -5px;
     }
   }
+
   .iconfont {
     font-size: 24px;
   }
 }
-.star_active{
-  color:red;
+.star_active {
+  color: red;
 }
 </style>
