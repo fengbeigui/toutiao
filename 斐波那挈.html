@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //通过代码的方式写出数列100为,斐波那契
+        //1 1 2 3 5 8 13 21.....
+        var arr= [1,1];
+        //负责计算
+        function loop(start,end) {
+            arr.push(start+end)
+            if(arr.length ===100)return;
+            loop(end,start+end)
+        }
+        loop(1,1)
+        console.log(arr)
+    </script>
+</body>
+</html>

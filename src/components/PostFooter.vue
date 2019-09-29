@@ -1,15 +1,19 @@
 <template>
-  <div class="footer-wrap">
+  <div class="footer-">
     <!--  普通页脚 -->
     <div class="footer" v-show="!isFocus">
       <input type="text" placeholder="写跟帖" @focus="handleFocus" />
 
       <span class="comment">
-        <em>1020</em>
+        <em>{{post.comment_length}}</em>
         <i class="iconfont iconpinglun-"></i>
       </span>
-
-      <i class="iconfont iconshoucang"></i>
+      <!-- 收藏 -->
+      <i
+        class="iconfont iconshoucang"
+        :class="{star_active:post.has_star}"
+        @click="$emit('handleStar')"
+      ></i>
 
       <i class="iconfont iconfenxiang"></i>
     </div>
@@ -23,16 +27,19 @@
 
 <script>
 export default {
-    data(){
-        return{
-            //输入框是否获得焦点
-            isFocus:false
-        }
-    },
+  data() {
+    return {
+      //输入框是否获得焦点
+      isFocus: false
+    };
+  },
+  //接受文章的详情
+  props: ["post"],
+
   methods: {
     //获取焦点时候触发
     handleFocus() {
-        this.isFocus = true;
+      this.isFocus = true;
     }
   }
 };
@@ -40,80 +47,81 @@ export default {
 
 <style scoped lang="less">
 .footer-wrap {
-        position: fixed;
-         bottom: 0;
-         left: 0;
-         width:100%;
-         border-top:1px #eee solid;
-         padding: 0 10px;
-         box-sizing: border-box;
-         
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px #eee solid;
+  padding: 0 10px;
+  box-sizing: border-box;
 
-.footer {
-        height: 60 / 360 * 100vw;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         box-sizing: border-box;
-         background-color: #fff;
-    input{
-        width: 40%;
-        height: 36 / 360 * 100vw;
-        background: #eee;
-        border:none;
-        font-size: 12px;
-        padding:0 15px;
-        border-radius: 50px;
+  .footer {
+    height: 60 / 360 * 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #fff;
+    input {
+      width: 40%;
+      height: 36 / 360 * 100vw;
+      background: #eee;
+      border: none;
+      font-size: 12px;
+      padding: 0 15px;
+      border-radius: 50px;
     }
-  .comment {
+    .comment {
       display: block;
       position: relative;
-      em{
-          position:absolute;
-          left: 0;
-          top: -5px;
-          display: block;
-          background: red;
-          border-radius: 50px;
-          padding: 0 8px;
-          
-      }
-  }
-}
-.footer-comment {
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  background-color: #fff;
-  textarea {
-      width: 260/360*100vw;
-    background:#eee;
-    padding: 10px;
-    box-sizing: border-box;
-    border:none;
-    border-radius: 8px;   
-    resize: none; 
-  }
-  span {
-        font-size:12px;
-        background:red;
-        width: 60 / 360 * 100vw;
-        height: 26 / 360 * 100vw;
-        line-height: 26 / 360 * 100vw;
-        color:#fff;
-        text-align: center;
+      em {
+        position: absolute;
+        left: 0;
+        top: -5px;
+        display: block;
+        background: red;
         border-radius: 50px;
-        color:#fff;
-        padding: 0 5px;
-        font-size:10px;
-        line-height: 26 / 360 * 100vw;
-        left:0;
-        top:-5px;
+        padding: 0 8px;
+      }
+    }
+  }
+  .footer-comment {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: #fff;
+    textarea {
+      width: 260/360 * 100vw;
+      background: #eee;
+      padding: 10px;
+      box-sizing: border-box;
+      border: none;
+      border-radius: 8px;
+      resize: none;
+    }
+    span {
+      font-size: 12px;
+      background: red;
+      width: 60 / 360 * 100vw;
+      height: 26 / 360 * 100vw;
+      line-height: 26 / 360 * 100vw;
+      color: #fff;
+      text-align: center;
+      border-radius: 50px;
+      color: #fff;
+      padding: 0 5px;
+      font-size: 10px;
+      line-height: 26 / 360 * 100vw;
+      left: 0;
+      top: -5px;
+    }
+  }
+  .iconfont {
+    font-size: 24px;
   }
 }
-    .iconfont{
-        font-size:24px;
-    }
+.star_active{
+  color:red;
 }
 </style>
