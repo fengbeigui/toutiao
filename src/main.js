@@ -14,6 +14,8 @@ import UserComment from "@/pages/UserComment";
 import PostDetail from "@/pages/PostDetail";
 import Index from "@/pages/Index";
 
+import Comment from "@/pages/postcomment/PostComment.vue";
+
 //导入vant-ui组件
 import Vant, { Toast } from 'vant';
 //导入axios
@@ -42,6 +44,8 @@ const routes = [
     { path: "/user_follow", component: UserFollow },
     { path: "/user_comment", component: UserComment },
     { path: "/post_detail/:id", component: PostDetail },
+    // :id文章的id
+    { path: "/post_comment/:id", component: Comment },
 
     { path: "/", component: Index },
 ]
