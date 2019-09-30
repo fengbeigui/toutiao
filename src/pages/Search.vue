@@ -5,16 +5,57 @@
             <span class="iconfont iconjiantou2" @click="$router.back()"></span>
             <div class="input-wrap">
             <span class="iconfont iconsearch"></span>
-            <input type="text" >           
+            <!-- 通过双向数据绑定 value改为keyword,方便等下赋值-->
+            <input type="text" v-model="keyword" placeholder="搜索关键字">           
             </div>
-             <span class="search-btn">搜索</span>
+             <span class="search-btn" @click="handleSearch">搜索</span>
+        </div>
+
+        <!-- 渲染列表，之前封装的PostCard，列表肯定是要循环的 -->
+        <!-- 接收文章详细，把item传过去 -->
+        <div class="list">
+            <PostCard
+            v-for="(item,index) in list"
+            :key="index"
+            :post="item"
+            />
         </div>
   </div>
 </template>
 
 <script>
-export default {
+//之前封装过一个列表渲染PostCard
+//导入文章列表模块的组件
+import PostCard from "@/components/PostCard";
 
+export default {
+    data(){
+        return{
+            //搜索的关键字
+            keyword:"",
+            //文章的列表
+            list:[]
+        }
+    },
+    components:{
+        PostCard
+    },
+    methods:{
+        //处理搜索
+        handleSearch(){
+            this.$axios({
+                url:`/post_search?keyword=${this.keyword}`
+                //.then(res=>{})看下结果
+            }).then(res=>{
+                //console.log(res.data);
+                //通过data 的方式保存起来
+                const {data } = res.data;
+                
+                //赋值给list
+                this.list = data;
+            })
+        }
+    }
 }
 </script>
 
