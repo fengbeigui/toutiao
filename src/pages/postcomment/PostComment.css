@@ -33,19 +33,3 @@
 .comment .comment-content {
   padding: 15px 0 0;
 }
-.comment-floor {
-  border: 1px #ccc solid;
-  padding: 10px;
-  background: #f6f6f6;
-}
-.comment-floor .floor-header {
-  font-size: 13px;
-  color: #666;
-}
-.comment-floor .floor-header i {
-  font-size: 12px;
-  color: #999;
-}
-.comment-floor .floor-header em {
-  float: right;
-}

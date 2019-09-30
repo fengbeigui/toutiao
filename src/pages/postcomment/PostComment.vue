@@ -23,18 +23,8 @@
                 <span class="reply">回复</span>
           </div>
 
-      <!-- 评论楼层 -->
-       <div class="comment-floor">
-         <div class="floor-header">
-           <span>1 火星网友</span>
-           <i>2小时前</i>
-           <em>回复</em>
-         </div>
-
-          <div class="comment-content">
-           文章说的很有道理！
-         </div>
-       </div>
+        <!-- 评论楼层的组件 当v-if="item.parent"有值就传 -->
+            <CommentFloor v-if="item.parent" :data="item.parent"/>
 
           <div class="comment-content">
                 <!-- //内容部分，啦啦啦 -->
@@ -42,6 +32,8 @@
           </div>
       </div>
 
+    <!-- 定义 detail传给页脚组件-->
+    <PostFooter :post="detail"/>
   </div>
 </template>
 
