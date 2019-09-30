@@ -4,15 +4,19 @@
       <HeaderNormal title="精彩跟帖"/>
 
       <!-- 评论模块 -->
-      <div class="comment">
+      <div class="comment"
+      v-for="(item,index) in comments"
+      :key="index"
+      >
           <div class="comment-info">
               <!-- 左侧用户信息 -->
               <div class="comment-user">
-                  <!-- 头像 -->
-                  <img src="../../../static/timg.jpg" alt="">
+                  <!-- 头像 两个不能同时存在，使用v-if-->
+                  <img :src="$axios.default.baseURL + item.user.head_img" v-if="item.user.head_img">
+                  <img src="../../../static/timg.jpg" v-else>
                     <!-- 用户名字 -->
-                    <div>
-                        <p>火星网友</p>
+                    <div class="user-info">
+                        <p>{{item.user.nickname}}</p>
                         <span>2小时</span>
                     </div>
                 </div>
@@ -33,7 +37,8 @@
        </div>
 
           <div class="comment-content">
-                内容部分，啦啦啦
+                <!-- //内容部分，啦啦啦 -->
+                {{item.content}}
           </div>
       </div>
 
