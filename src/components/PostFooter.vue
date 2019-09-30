@@ -91,6 +91,14 @@ export default {
       if (!this.value) {
         return;
       }
+      //评论的参数
+      const data = {
+        content:this.value
+      }
+      //如果有回复的评论 加上parent_id
+      if(this.replyComment){
+        data.parent_id = this.replyComment.id;
+      }
       this.$axios({
         url: "/post_comment/" + this.post.id,
         //method 属性设置的方法将表单中的数据传送给服务器进行处理
@@ -99,9 +107,8 @@ export default {
         headers: {
           Authorization: localStorage.getItem("token")
         },
-        data: {
-          content: this.value
-        }
+        data
+
       }).then(res => {
         //console.log(res.data);
         const { message } = res.data;
@@ -109,7 +116,7 @@ export default {
           //触发父组件方法更新评论的列表
           //当文章发布成功的时候，怎么去调用文章事件?,$emit
           //需要把id传过来,没有thi会报undefined
-          this.$emit("getComments" + this.post.id);
+          this.$emit("getComments" + this.post.id,"isReply");
 
           //隐藏输入框
           this.isFocus = false;
@@ -118,7 +125,8 @@ export default {
           this.value = "";
 
           //滚动到底部
-          window.scrollTo(0, document.body.offsetHeight);
+         // window.scrollTo(0, document.body.offsetHeight);
+         window.scrollTo(0,0);
         }
       });
     }

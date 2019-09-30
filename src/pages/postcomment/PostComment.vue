@@ -4,6 +4,17 @@
       <HeaderNormal title="精彩跟帖"/>
 
       <!-- 评论模块 -->
+        <!-- v-model：是否在加载
+     v-for="(item, index) in comments"		     finished：是否加载完毕
+     :key="index">		     load：到底部触发加载 -->
+    <van-list
+    v-model="loading"
+    :finished="finished"
+    finished-text="没有更多了"
+    :immediate-check="false"
+    @load="onLoad"
+    >
+
       <div class="comment"
       v-for="(item,index) in comments"
       :key="index"
@@ -24,13 +35,17 @@
           </div>
 
         <!-- 评论楼层的组件 当v-if="item.parent"有值就传 -->
-            <CommentFloor v-if="item.parent" :data="item.parent"/>
+            <CommentFloor 
+            v-if="item.parent" 
+            :data="item.parent"
+            @handleReply="handleReply"/>
 
           <div class="comment-content">
                 <!-- //内容部分，啦啦啦 -->
                 {{item.content}}
           </div>
       </div>
+    </van-list>
 
     <!-- 定义 detail传给页脚组件,把事件传过去的方法-->
    <!--  <PostFooter :post="detail" @getComments="getComments"/> -->
@@ -42,6 +57,7 @@
      :replyComment="replyComment" 
      @handleReply="handleReply"
      @getComments="getComments"/>
+     
   </div>
 </template>
 

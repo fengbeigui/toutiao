@@ -2,14 +2,17 @@
 <div>
          <!-- 评论楼层 再调用一遍-->
         <!-- 通过组件的方式调用自己 要传parent-->
-        <comment  v-if="data.parent" :data="data.parent"></comment>
+        <comment  v-if="data.parent" 
+        :data="data.parent"
+         @handleReply="handleReply"
+        ></comment>
 
       <!-- 评论楼层 -->
        <div class="comment-floor">
          <div class="floor-header">
            <span> {{data.user.nickname}}</span>
            <i>2小时前</i>
-           <em>回复</em>
+           <em @click="handleReply">回复</em>
          </div>
 
           <div class="comment-content">
@@ -53,6 +56,12 @@ export default {
     //         }
     //     }
     // }
+
+    methods:{
+      handleReply(){
+        this.$emit("handleReplay",this.data);
+      }
+    }
 }
 </script>
 
