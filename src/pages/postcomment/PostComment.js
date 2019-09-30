@@ -42,7 +42,7 @@ export default {
         handleReply(item){
             //获取到当前要回复的id
             this.replyComment = item;
-        }
+        },
 
     },
     mounted() {
