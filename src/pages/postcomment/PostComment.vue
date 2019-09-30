@@ -20,7 +20,7 @@
                         <span>2小时</span>
                     </div>
                 </div>
-                <span class="reply">回复</span>
+                <span class="reply"  @click="handleReply(item)">回复</span>
           </div>
 
         <!-- 评论楼层的组件 当v-if="item.parent"有值就传 -->
@@ -33,7 +33,14 @@
       </div>
 
     <!-- 定义 detail传给页脚组件,把事件传过去的方法-->
-    <PostFooter :post="detail" @getComments="getComments"/>
+   <!--  <PostFooter :post="detail" @getComments="getComments"/> -->
+        <!-- post文章的详情
+     replyComment：要回复的评论
+     getComments：发布评论成功后重新请求评论的列表 -->
+     <PostFooter 
+     :post="detail" 
+     :replyComment="replyComment" 
+     @getComments="getComments"/>
   </div>
 </template>
 
