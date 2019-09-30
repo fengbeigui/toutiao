@@ -34,7 +34,7 @@ export default {
         //封装文章的id,自定义一个名字,通过id参数传过来
         getComments(id, isReply) {
 
-            // 如果评论发布成功，初始化分页的数据和列表数据
+            // 如果评论发布成功，初始化分页的数据和列表数据,这些内容已经很深，要有一定的经验沉淀，
             if (isReply === "isReply") {
                 this.pageIndex = 1;
                 this.comments = []

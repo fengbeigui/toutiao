@@ -13,6 +13,7 @@ import UserFollow from "@/pages/UserFollow";
 import UserComment from "@/pages/UserComment";
 import PostDetail from "@/pages/PostDetail";
 import Index from "@/pages/Index";
+import Search from "@/pages/Search";
 
 import Comment from "@/pages/postcomment/PostComment.vue";
 
@@ -46,6 +47,9 @@ const routes = [
     { path: "/post_detail/:id", component: PostDetail },
     // :id文章的id
     { path: "/post_comment/:id", component: Comment },
+
+    { path: "/search/", component: Search },
+    
 
     { path: "/", component: Index },
 ]
