@@ -202,8 +202,6 @@ export default {
   //垂直方向居中，元素在侧轴居中
   align-items: center;
   
- 
-
   .video-user{
     display: flex;
     align-items: center;

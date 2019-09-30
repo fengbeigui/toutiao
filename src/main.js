@@ -35,6 +35,7 @@ Vue.use(Vant);
 Vue.prototype.$axios = axios;  //this.$axios  $axios为自定义
 //基准路径，以后每次请求都会自动在前面加上该路径
 axios.defaults.baseURL = "http://localhost:3000";
+//axios.defaults.baseURL = "http://106.54.54.189:3000";
 
 //路由 2.创建路由配置
 const routes = [
