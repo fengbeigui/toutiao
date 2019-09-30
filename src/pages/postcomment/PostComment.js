@@ -11,7 +11,7 @@ export default {
             //评论列表，定义comments,属于数组
             comments: [],
             //文章的详情
-            detail:{}
+            detail: {}
         }
     },
 
@@ -21,19 +21,30 @@ export default {
         CommentFloor,
         PostFooter
     },
+    methods: {
+        //封装文章的id,自定义一个名字,通过id参数传过来
+        getComments(id) {
+
+            //请求文章评论
+            this.$axios({
+                url: "/post_comment/" + id,
+                //通过点then来接收这个参数
+            }).then(res => {
+                //console.log(res.data);
+                //请求的数据保存出来
+                const { data } = res.data;
+                this.comments = data;
+            });
+        }
+
+    },
     mounted() {
         //如何从路由那边拿到id，文章的id
         const { id } = this.$route.params;
-        //请求文章评论
-        this.$axios({
-            url: "/post_comment/" + id,
-            //通过点then来接收这个参数
-        }).then(res => {
-            //console.log(res.data);
-            //请求的数据保存出来
-            const { data } = res.data;
-            this.comments = data;
-        });
+
+        //请求评论列表的调用
+        this.getComments(id);
+
         // 文章的详情
         const config = {
             url: "/post/" + id

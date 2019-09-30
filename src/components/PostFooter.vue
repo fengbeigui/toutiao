@@ -29,8 +29,14 @@
     </div>
     <!--  输入评论页脚 这里显示隐藏必须要用v-show，原因是为了获得textare的dom元素 -->
     <div class="footer-comment" v-show="isFocus">
-      <textarea ref="textarea" rows="3" @blur="isFocus = false" :autofocus="isFocus"></textarea>
-      <span>发送</span>
+      <!-- v-model="value"绑定值 -->
+      <textarea 
+      ref="textarea" 
+      rows="3" 
+      v-model="value"
+      @blur="isFocus = false" 
+      :autofocus="isFocus"></textarea>
+      <span @click="hanleSend">发送</span>
     </div>
   </div>
 </template>
@@ -40,7 +46,9 @@ export default {
   data() {
     return {
       //输入框是否获得焦点
-      isFocus: false
+      isFocus: false,
+      //评论的内容,初始为空
+      value:""
     };
   },
   //接受文章的详情
@@ -50,6 +58,39 @@ export default {
     //获取焦点时候触发
     handleFocus() {
       this.isFocus = true;
+    },
+    //发布评论
+    hanleSend(){
+      
+      //如果发布内容初始值为空value，那就不要发布
+      if(!this.value){
+        return;
+      }
+      this.$axios({
+        url:"/post_comment/" + this.post.id,
+        //method 属性设置的方法将表单中的数据传送给服务器进行处理
+        method:"POST",
+        //添加信息头
+        headers:{
+          Authorization:localStorage.getItem("token")
+        },
+        data:{
+          content:this.value
+        }
+      }).then(res=>{
+        //console.log(res.data);
+        const{message}= res.data;
+        if(message==="评论发布成功"){
+          //触发父组件方法更新评论的列表
+          //当文章发布成功的时候，怎么去调用文章事件?,$emit
+          //需要把id传过来,没有thi会报undefined
+          this.$emit("getComments"+this.post.id)
+       
+          //隐藏输入框
+          this.isFocus = false;
+       }
+        
+      })
     }
   }
 };

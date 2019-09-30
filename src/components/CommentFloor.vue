@@ -1,5 +1,9 @@
 <template>
 <div>
+         <!-- 评论楼层 再调用一遍-->
+        <!-- 通过组件的方式调用自己 要传parent-->
+        <comment  v-if="data.parent" :data="data.parent"></comment>
+
       <!-- 评论楼层 -->
        <div class="comment-floor">
          <div class="floor-header">
@@ -13,9 +17,7 @@
          </div>
        </div>
 
-     <!-- 评论楼层 再调用一遍-->
-        <!-- 通过组件的方式调用自己 要传parent-->
-        <comment  v-if="data.parent" :data="data.parent"></comment>
+
 
 </div>
 

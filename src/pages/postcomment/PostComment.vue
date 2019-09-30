@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
       <!-- 头部组件 -->
       <HeaderNormal title="精彩跟帖"/>
 
@@ -32,8 +32,8 @@
           </div>
       </div>
 
-    <!-- 定义 detail传给页脚组件-->
-    <PostFooter :post="detail"/>
+    <!-- 定义 detail传给页脚组件,把事件传过去的方法-->
+    <PostFooter :post="detail" @getComments="getComments"/>
   </div>
 </template>
 
