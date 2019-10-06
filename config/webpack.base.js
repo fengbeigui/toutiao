@@ -109,8 +109,8 @@ module.exports = {
         new CopyPlugin([
             //把static复制到dist下的static
             {
-                from:'static',to:'static'
-            }, 
+                from: 'static', to: 'static'
+            },
         ]),
     ]
 }

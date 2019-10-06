@@ -116,7 +116,7 @@ export default {
           //触发父组件方法更新评论的列表
           //当文章发布成功的时候，怎么去调用文章事件?,$emit
           //需要把id传过来,没有thi会报undefined
-          this.$emit("getComments" + this.post.id,"isReply");
+          this.$emit("getComments" , this.post.id,"isReply");
 
           //隐藏输入框
           this.isFocus = false;
