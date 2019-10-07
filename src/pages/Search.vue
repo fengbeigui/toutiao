@@ -57,6 +57,24 @@ export default {
                 this.list = data;
             })
         }
+    },
+    // 组件内的路由守卫，判断如果是首页进入到搜索页的，清空页面的缓存数据
+    //to:去哪里
+    //from:从哪里来
+    //next:函数，必须要调用，可以接受url的路径，函数，不传参数
+    beforeRouteEnter(to,from,next){
+        //如果from.path值等于斜杠 \转义字符
+        if(from.path === "\/"){
+             // 在渲染该组件的对应路由被 confirm 前调用
+             // 不！能！获取组件实例 `this`,需要在next的回调函数中获取
+             next(vm =>{
+                 // vm就是组件的实例，也就是this
+                 vm.keyword = "";
+                 vm.list= [];
+             })
+        }else{
+            next();
+        }
     }
 }
 </script>
