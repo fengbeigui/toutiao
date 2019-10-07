@@ -172,14 +172,14 @@ export default {
       }
     }
     this.$axios(config).then(res => {
-      console.log(res);
+      //console.log(res);
 
       const { data } = res.data;
       this.wenzhang = data;
 
       //保存到详情
       this.detail = data;
-      console.log(this.detail);
+     // console.log(this.detail);
     });
   }
 };

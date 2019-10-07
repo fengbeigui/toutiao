@@ -5,10 +5,10 @@
       <span class="iconfont iconnew logo"></span>
 
       <router-link to="/search" class="link-search">
-            <div class="header-search">
-            <span class="iconfont iconsearch"></span>
-            <i>搜索新闻</i>
-          </div>
+        <div class="header-search">
+          <span class="iconfont iconsearch"></span>
+          <i>搜索新闻</i>
+        </div>
       </router-link>
 
       <router-link to="/personal">
@@ -43,6 +43,16 @@
           <!-- 文章模块组件，post是单篇文章详情 -->
           <PostCard v-for="(item,index) in item.posts" :key="index" :post="item" />
         </van-list>
+
+        <!-- 加载中的图片 -->
+        <van-loading
+          v-if="item.posts.length === 0 && !item.finished"
+          size="24px"
+          style="margin-top:20px;"
+          vertical
+          type="spinner"
+          color="#1989fa"
+        >加载中...</van-loading>
       </van-tab>
     </van-tabs>
   </div>
@@ -52,7 +62,7 @@
 //文章列表模块
 import PostCard from "@/components/PostCard";
 export default {
-  name:"index",//可以命名为任意字符串
+  name: "index", //可以命名为任意字符串
   data() {
     return {
       //active:1
@@ -81,7 +91,7 @@ export default {
     active() {
       this.cid = this.categories[this.active].id;
 
-      console.log(this.cid);
+      //console.log(this.cid);
 
       //切换栏目时候加载当前栏目的数据
       this.onLoad();
@@ -97,29 +107,29 @@ export default {
         console.log("已经滚动到底部");
         //重复代码封装下
         const category = this.categories[this.active];
-        console.log(category)
-          //请求文章列表
-          this.$axios({
-            url: `/post?category=${this.cid}
+        //console.log(category);
+        //请求文章列表
+        this.$axios({
+          url: `/post?category=${this.cid}
             &pageIndex=${category.pageIndex}
             &pageSize=${this.pageSize}`
-          }).then(res => {
-            const { data } = res.data;
-            //没有更多的数据了
-            if (data.length < this.pageSize) {
-              category.finished = true;
-            }
-            //默认赋值给头条的列表,合并数组用解构函数
-            category.posts = [...category.posts, ...data];
-            //页数加一
-            category.pageIndex++;
-            //告诉onload事件这次的数据加载已经完毕，下次可以继续触发onload
-            category.loading = false;
-          });
-          //加载完毕后需要手动变为false
-          // this.loading = false;
-          // this.finished = true;
-        }, 2000);
+        }).then(res => {
+          const { data } = res.data;
+          //没有更多的数据了
+          if (data.length < this.pageSize) {
+            category.finished = true;
+          }
+          //默认赋值给头条的列表,合并数组用解构函数
+          category.posts = [...category.posts, ...data];
+          //页数加一
+          category.pageIndex++;
+          //告诉onload事件这次的数据加载已经完毕，下次可以继续触发onload
+          category.loading = false;
+        });
+        //加载完毕后需要手动变为false
+        // this.loading = false;
+        // this.finished = true;
+      }, 2000);
     }
   },
 
@@ -182,7 +192,7 @@ export default {
     font-size: 50/360 * 100vw;
     color: #fff;
   }
-  .link-search{
+  .link-search {
     display: block;
     flex: 1;
     margin: 0 30px;
