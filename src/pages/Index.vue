@@ -52,6 +52,7 @@
 //文章列表模块
 import PostCard from "@/components/PostCard";
 export default {
+  name:"index",//可以命名为任意字符串
   data() {
     return {
       //active:1

@@ -29,6 +29,8 @@
 import PostCard from "@/components/PostCard";
 
 export default {
+    //keep-alive标签需要定义的名字
+    name:"search",
     data(){
         return{
             //搜索的关键字
